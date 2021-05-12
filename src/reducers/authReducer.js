@@ -9,7 +9,7 @@ export const authReducer=(state={},action)=>{
             }
         case types.logout:
             return{ }
-
+/*G */
 
         default:
            return state;
