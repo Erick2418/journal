@@ -1,6 +1,6 @@
 import {firebase, googleAuthProvider} from './../../firebase/firebase-config'
 import { types } from '../types/types'
-
+/* estas acciones sirven para hacer el distpach  */
 export const startLoginEmailPasswod=(email,password)=>{
     return (dispatch)=>{
         setTimeout(() => {
@@ -21,7 +21,7 @@ export const startLoginEmailPasswod=(email,password)=>{
 //         } )
 //     }
 // }
-
+/**Esto es la forma asincrona */
 export const startGoogleLogin=()=>{
     return (dispatch)=>{
         firebase.auth().signInWithPopup(googleAuthProvider)
@@ -32,6 +32,7 @@ export const startGoogleLogin=()=>{
         } )
     }
 }
+/**Esto es para hacerlo de manera sincrona */
 export const login = (uid,displayName) => ({
         type: types.login,
         payload:{

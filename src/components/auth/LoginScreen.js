@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm';
-import { login, startGoogleLogin, startLoginEmailPasswod } from '../actions/auth';
+import { startGoogleLogin, startLoginEmailPasswod } from '../actions/auth';
 
 
 
 export const LoginScreen = () => {
 
-
+    /**Permite hacer distach hacia el store */
     const dispatch= useDispatch();
 
     const [ formValues, handleInputChange ]= useForm({
