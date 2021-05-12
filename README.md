@@ -27,3 +27,7 @@ o en caso no funcione, borras la carpeta de node y el
 achibo package.json 
 luego los instalas con npm install
 https://stackoverflow.com/questions/52801814/this-syntax-requires-an-imported-helper-but-module-tslib-cannot-be-found-wit/53818521
+
+## cambiar de repo 
+
+git remote set-url origin urlnew
