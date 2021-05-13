@@ -8,19 +8,23 @@ export const startLoginEmailPasswod=(email,password)=>{
         }, 3500);
     }
 }
+/**En esta funcion grande lo que hacemos es enviar email y el password
+ * pero como tambien queremos enviar el nombre. se lo hace conl a funcion
+ * updateProfile, y le enviamos el parametro y el valor del objeto user
+ */
+export const startRegisterWithEmailPasswordName=(email,password,name)=>{
+    return (dispatch)=>{
+        firebase.auth().createUserWithEmailAndPassword(email,password)
+        .then( async ({user})=>{
+            await user.updateProfile({displayName:name});
+            dispatch(
+                login( user.uid,user.displayName )
+            ) 
+        } ).catch(e=>{console.log(e)})
+    }
+}
 
-// export const startGoogleLogin=()=>{
-//     return (dispatch)=>{
-//         firebase.auth().signInWithPopup(googleAuthProvider)
-//         .then(userCred =>{
-    /**@userCred Extra los datos del usuario identificado
-      lo importante es el 
-      uid, displayname
-     */
-//             console.log(userCred);
-//         } )
-//     }
-// }
+
 /**Esto es la forma asincrona */
 export const startGoogleLogin=()=>{
     return (dispatch)=>{
