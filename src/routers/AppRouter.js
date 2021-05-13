@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -8,8 +8,29 @@ import {
 
 import { AuthRouter } from './AuthRouter';
 import { JournalScreen } from '../components/journal/JournalScreen';
-
+import { useDispatch } from 'react-redux';
+import {firebase} from '../firebase/firebase-config'
+import { login } from '../components/actions/auth';
 export const AppRouter = () => {
+
+    const dispatch= useDispatch();
+    /**Recordaremos el uid del usuario que se loguea
+     * no lo guardamos en el localStorage por que es info sensible
+    queremos que se dispare 1 vez asi que usaremos useEffect
+    */
+    useEffect(() => {
+        
+        firebase.auth().onAuthStateChanged( 
+            (user)=>{
+                if(user?.uid){
+                    dispatch(login(user.uid,user.displayName));
+                }     
+            } 
+        )
+        
+    }, [dispatch])
+
+
     return (
         <Router>
             <div>
