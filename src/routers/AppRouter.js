@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -14,22 +14,40 @@ import { login } from '../components/actions/auth';
 export const AppRouter = () => {
 
     const dispatch= useDispatch();
+   /**Verifica que se este checkeando las variables de logueo */
+    const [checking, setCheking] = useState(true);
+/**verifica que el usuario se logueo correctamente */
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+   
     /**Recordaremos el uid del usuario que se loguea
      * no lo guardamos en el localStorage por que es info sensible
     queremos que se dispare 1 vez asi que usaremos useEffect
     */
+
     useEffect(() => {
         
         firebase.auth().onAuthStateChanged( 
             (user)=>{
                 if(user?.uid){
                     dispatch(login(user.uid,user.displayName));
-                }     
+                    setIsLoggedIn(true);
+                }else{
+                    setIsLoggedIn(false)
+                }
+
+                setCheking(false);
+
             } 
         )
         
-    }, [dispatch])
+    }, [dispatch,setCheking,setIsLoggedIn]);
 
+
+    if(checking){
+        return(
+            <h1>Espere...</h1>
+        )
+    }
 
     return (
         <Router>
