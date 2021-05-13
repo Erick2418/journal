@@ -17,7 +17,8 @@ https://www.npmjs.com/package/redux-thunk
 
 /*Validar formularios*/
 https://www.npmjs.com/package/validator
-
+/*Alerts de Botones animados*/
+https://sweetalert2.github.io/#download
 ## si te da el error de error std Lib o algo relacionado a
 ## ___string algo 
 solo tienes que instalar 
