@@ -9,7 +9,6 @@ export const startNewNote=()=>{
             title:'',
             body:'',
             date:new Date().getTime()
-
         }
         /*Espera a que se aga la insersion y el doc tiene 
         la ref al documento en firebase 
@@ -19,11 +18,8 @@ export const startNewNote=()=>{
         */
         const doc= await db.collection(`${uid}/journal/notes`).add(newNote)
         dispatch(ActiveNote(doc.id,newNote));
-
-
     }
 }
-
 
 export const ActiveNote=(id,note)=>({
     type:types.notesActive,
@@ -33,4 +29,7 @@ export const ActiveNote=(id,note)=>({
     }
 })
 
-
+export const setNotes =(notes)=>({
+    type: types.notesLoad,
+    payload: notes
+})
