@@ -19,6 +19,8 @@ https://www.npmjs.com/package/redux-thunk
 https://www.npmjs.com/package/validator
 /*Alerts de Botones animados*/
 https://sweetalert2.github.io/#download
+/*Manejar fechas y realizar operaciones*/
+https://momentjs.com/
 ## si te da el error de error std Lib o algo relacionado a
 ## ___string algo 
 solo tienes que instalar 
