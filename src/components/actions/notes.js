@@ -1,4 +1,5 @@
 import { db } from "../../firebase/firebase-config";
+import { types } from "../types/types";
 
 
 export const startNewNote=()=>{
@@ -14,13 +15,22 @@ export const startNewNote=()=>{
         la ref al documento en firebase 
         No te dejara amenos que edites las reglas en firebase
          ********allow read, write: if true;
+       allow read, write: if request.auth != null(tenemos que tener un usuario para editar?)
         */
         const doc= await db.collection(`${uid}/journal/notes`).add(newNote)
-        console.log(doc);
+        dispatch(ActiveNote(doc.id,newNote));
 
 
     }
 }
 
+
+export const ActiveNote=(id,note)=>({
+    type:types.notesActive,
+    payload:{
+            id,
+        ...note
+    }
+})
 
 
