@@ -42,3 +42,25 @@ export const setNotes =(notes)=>({
     type: types.notesLoad,
     payload: notes
 })
+
+
+/**Accion para grabar en firebase */
+
+export const starSaveNote=(note)=>{
+    return async(dispath,getState)=>{
+
+        const {uid} = getState().auth;
+        if(!note.url){
+            delete note.url;
+        }
+        const noteToFirestore = {...note};
+        delete noteToFirestore.id;
+        await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+
+    }
+}
+
+
+
+
+

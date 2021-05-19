@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../../hooks/useForm';
+import { ActiveNote } from '../actions/notes';
 import { NotesAppBar } from './NotesAppBar'
 
 export const NoteScreen = () => {
 
+    const dispatch= useDispatch();
     const {active:note} = useSelector( state => state.notes );
 
     const [formValues,handleInputChange,reset]= useForm(note);
@@ -30,13 +32,21 @@ export const NoteScreen = () => {
  * 
  */
     useEffect(() => {
-        
-        
+
          if(note.id!== activeId.current){
             reset(note);
             activeId.current= note.id;
          }
     }, [note,reset])
+/**Este use Effect se disparara cundo cambie el titulo o el body */
+    useEffect(() => {
+        
+       dispatch(ActiveNote(formValues.id,{...formValues}))
+         
+    }, [formValues,dispatch])
+
+
+
 
     return (
         <div className="notes__main-content">
