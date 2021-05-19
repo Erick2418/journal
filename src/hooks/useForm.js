@@ -6,8 +6,8 @@ export const useForm = (initialState={}) => {
 
 
     /*Reinicia el input y lo deja vacio */
-    const reset=()=>{
-        setvalues(initialState);
+    const reset=( newFormState= initialState)=>{
+        setvalues(newFormState);
     }
 
     const handleInputChange=( {target} )=>{
